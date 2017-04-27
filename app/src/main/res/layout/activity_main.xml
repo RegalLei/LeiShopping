@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="com.gl.leishopping.MainActivity">
+    tools:context=".LeiShoppingActivity.MainActivity">
 
     <FrameLayout
         android:id="@+id/framelayout"
@@ -58,7 +58,6 @@
             android:text="购物车"
             android:textColor="@drawable/buttom_button_text_seleces"
             />
-
         <RadioButton
             android:id="@+id/rb_user"
             style="@style/MainButton"
