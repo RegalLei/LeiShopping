@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.gl.leishopping.Home.fragment.Adapter.HomeFragmentAdapter;
 import com.gl.leishopping.Home.fragment.bean.ResultBeanData;
 import com.gl.leishopping.LeiShoppingActivity.BaseFragment;
 import com.gl.leishopping.R;

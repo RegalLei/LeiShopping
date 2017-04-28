@@ -1,10 +1,11 @@
-package com.gl.leishopping.Home.fragment;
+package com.gl.leishopping.Home.fragment.Holder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.GridView;
 
+import com.gl.leishopping.Home.fragment.Adapter.ChannelAdapter;
 import com.gl.leishopping.Home.fragment.bean.ResultBeanData;
 import com.gl.leishopping.R;
 

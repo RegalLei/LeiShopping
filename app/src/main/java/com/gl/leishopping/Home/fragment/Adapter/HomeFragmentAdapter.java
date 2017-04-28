@@ -1,6 +1,7 @@
-package com.gl.leishopping.Home.fragment;
+package com.gl.leishopping.Home.fragment.Adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.gl.leishopping.Home.fragment.Holder.ActViewHolder;
+import com.gl.leishopping.Home.fragment.Holder.ChannelViewHolder;
+import com.gl.leishopping.Home.fragment.Holder.HotViewHolder;
+import com.gl.leishopping.Home.fragment.Holder.RecommendViewHolder;
+import com.gl.leishopping.Home.fragment.Holder.SeckillViewHolder;
 import com.gl.leishopping.Home.fragment.bean.ResultBeanData;
 import com.gl.leishopping.R;
 import com.gl.leishopping.Utils.Constants;
@@ -54,6 +60,18 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
         }else if(viewType==CHANNEL){
             //C.返回创建的ChannelViewHolder
             return  new ChannelViewHolder(gcontext,gLayoutInflater.inflate(R.layout.channel_item,null));
+        }else if(viewType==ACT){
+            //D.返回创建的ActViewHolder
+            return  new ActViewHolder(gcontext,gLayoutInflater.inflate(R.layout.act_holder,null));
+        }else if(viewType==SECKILL){
+            //E.返回创建的SeckillViewHolder
+            return  new SeckillViewHolder(gcontext,gLayoutInflater.inflate(R.layout.seckill_item,null));
+        }else if(viewType==RECOMMEND){
+            //F.返回创建的RecommendViewHolder
+            return  new RecommendViewHolder(gcontext,gLayoutInflater.inflate(R.layout.recommend_,null));
+        }else if(viewType==HOT){
+            //G.返回创建的HotViewHolder
+            return  new HotViewHolder(gcontext,gLayoutInflater.inflate(R.layout.hot_,null));
         }
         return null;
     }
@@ -67,10 +85,25 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             BannerViewHolder bannerViewHolder = (BannerViewHolder) holder;
             //给BannerViewHolder设置数据
             bannerViewHolder.setData(gresult.getBanner_info());
+            //C
         }else if(getItemViewType(position)==CHANNEL){
             ChannelViewHolder channelViewHolder= (ChannelViewHolder) holder;
             //给频道的ViewHolder设置数据
             channelViewHolder.setData(gresult.getChannel_info());
+            //D
+        }else if(getItemViewType(position)==ACT){
+            ActViewHolder actViewHolder= (ActViewHolder) holder;
+            //给ActViewHolder设置数据
+            actViewHolder.setData(gresult.getAct_info());
+            //E
+        }else if(getItemViewType(position)==SECKILL){
+            SeckillViewHolder seckillViewHolder= (SeckillViewHolder) holder;
+            //给SeckillViewHolder设置数据
+            seckillViewHolder.setData(gresult.getSeckill_info());
+        }else if(getItemViewType(position)==RECOMMEND){
+
+        }else if(getItemViewType(position)==HOT){
+
         }
 
     }
@@ -126,7 +159,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 4;
     }
 
     /**
@@ -153,6 +186,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             }
             //设置广告条循环时所用到的小点.//设置广告条循环时所用到的小点.
             mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+
             //参数:1.String类型的集合    2.加载图片后的回调监听
             mBanner.setImages(images, new OnLoadImageListener() {
                 @Override
@@ -162,6 +196,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
                             .into(view);
                 }
             });
+
             //设置广告条轮播时就是手风琴的效果
             mBanner.setBannerAnimation(Transformer.Accordion);
             //设置轮播图的item点击事件

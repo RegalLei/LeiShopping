@@ -1,4 +1,4 @@
-package com.gl.leishopping.Home.fragment;
+package com.gl.leishopping.Home.fragment.Adapter;
 
 import android.content.Context;
 import android.view.View;
