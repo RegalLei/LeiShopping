@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.gl.leishopping">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".LeiShoppingActivity.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/leishopping"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".LeiShoppingActivity.MyApplication"
-        >
+        android:theme="@style/AppTheme">
         <activity android:name=".LeiShoppingActivity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,10 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--禁止横竖屏切换,防止Fragment重新创建对象-->
-        <activity android:name=".LeiShoppingActivity.MainActivity"
-                  android:configChanges="orientation|screenSize|keyboardHidden"
-            >
+        <!-- 禁止横竖屏切换,防止Fragment重新创建对象 -->
+        <activity
+            android:name=".LeiShoppingActivity.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+        </activity>
+        <activity android:name=".LeiShoppingActivity.GoodsInfoActivity">
         </activity>
     </application>
 

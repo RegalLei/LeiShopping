@@ -1,6 +1,7 @@
 package com.gl.leishopping.LeiShoppingActivity;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -14,13 +15,21 @@ import okhttp3.OkHttpClient;
  * 功能：自定义的Application(记得在清单文件进行配置),对使用的第三方开源框架进行初始化的地方
  */
 public class MyApplication extends Application{
+
+    //B.创建一个上下文对象,方便其他类调用.
+    private static Context gContext;
     @Override
     public void onCreate() {
         super.onCreate();
         //初始化okhttp工具类
         initOkhttp();
+        //B.应用一启动,就给上下文赋值
+        gContext=this;
     }
-
+    //B.获取上下文的方法
+    public static Context getgContext(){
+        return gContext;
+    }
     private void initOkhttp() {
 
         OkHttpClient client=new OkHttpClient.Builder()

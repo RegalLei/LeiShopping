@@ -2,6 +2,7 @@ package com.gl.leishopping.Home.fragment.Holder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -9,10 +10,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.gl.leishopping.Cart.fragment.bean.GoodsBean;
 import com.gl.leishopping.Home.fragment.Adapter.SeckillViewAdapter;
 import com.gl.leishopping.Home.fragment.bean.ResultBeanData;
+import com.gl.leishopping.LeiShoppingActivity.GoodsInfoActivity;
 import com.gl.leishopping.R;
 
 import java.text.SimpleDateFormat;
@@ -29,7 +31,7 @@ public class SeckillViewHolder extends RecyclerView.ViewHolder {
     private final RecyclerView gRv_seckill;
     private final TextView gTv_time_seckill;
     private final TextView gTv_more_seckill;
-
+    private static final String Goods_Bean="goodsbean";
     //E2.倒计时的时间,从服务器那拿两个值,进行相减得到倒计时的真实数值.这里定义了个临时变量
     private long ms;
     Handler gHandler=new Handler(){
@@ -53,6 +55,7 @@ public class SeckillViewHolder extends RecyclerView.ViewHolder {
             }
         }
     };
+    private GoodsBean goodsBean=new GoodsBean();
 
     public SeckillViewHolder(Context gcontext, View inflate) {
         super(inflate);
@@ -72,7 +75,10 @@ public class SeckillViewHolder extends RecyclerView.ViewHolder {
         seckillViewAdapter.setOnSeckillRecyclerView(new SeckillViewAdapter.OnSeckillRecyclerView() {
             @Override
             public void OmItemClick(int position) {
-                Toast.makeText(gGcontext,"秒杀"+getLayoutPosition(), Toast.LENGTH_SHORT).show();
+                //根据点击事件跳转到商品详情页,因为好多地方都要用到此逻辑,所以抽取此方法
+                Intent intent = new Intent(gGcontext,GoodsInfoActivity.class);
+                intent.putExtra(Goods_Bean,goodsBean);
+                gGcontext.startActivity(intent);
             }
         });
 

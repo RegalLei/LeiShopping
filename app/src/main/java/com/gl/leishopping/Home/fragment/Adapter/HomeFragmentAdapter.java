@@ -1,13 +1,12 @@
 package com.gl.leishopping.Home.fragment.Adapter;
 
 import android.content.Context;
-import android.os.Handler;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gl.leishopping.Home.fragment.Holder.ActViewHolder;
@@ -16,6 +15,7 @@ import com.gl.leishopping.Home.fragment.Holder.HotViewHolder;
 import com.gl.leishopping.Home.fragment.Holder.RecommendViewHolder;
 import com.gl.leishopping.Home.fragment.Holder.SeckillViewHolder;
 import com.gl.leishopping.Home.fragment.bean.ResultBeanData;
+import com.gl.leishopping.LeiShoppingActivity.GoodsInfoActivity;
 import com.gl.leishopping.R;
 import com.gl.leishopping.Utils.Constants;
 import com.youth.banner.Banner;
@@ -68,10 +68,10 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             return  new SeckillViewHolder(gcontext,gLayoutInflater.inflate(R.layout.seckill_item,null));
         }else if(viewType==RECOMMEND){
             //F.返回创建的RecommendViewHolder
-            return  new RecommendViewHolder(gcontext,gLayoutInflater.inflate(R.layout.recommend_,null));
+            return  new RecommendViewHolder(gcontext,gLayoutInflater.inflate(R.layout.recommend_item,null));
         }else if(viewType==HOT){
             //G.返回创建的HotViewHolder
-            return  new HotViewHolder(gcontext,gLayoutInflater.inflate(R.layout.hot_,null));
+            return  new HotViewHolder(gcontext,gLayoutInflater.inflate(R.layout.hot_item,null));
         }
         return null;
     }
@@ -101,9 +101,13 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             //给SeckillViewHolder设置数据
             seckillViewHolder.setData(gresult.getSeckill_info());
         }else if(getItemViewType(position)==RECOMMEND){
-
+            RecommendViewHolder recommendViewHolder= (RecommendViewHolder) holder;
+            //给RecommendViewHolder设置数据
+            recommendViewHolder.setData(gresult.getRecommend_info());
         }else if(getItemViewType(position)==HOT){
-
+            //给 HotViewHolder设置数据
+            HotViewHolder hotViewHolder= (HotViewHolder) holder;
+            hotViewHolder.setData(gresult.getHot_info());
         }
 
     }
@@ -159,7 +163,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 6;
     }
 
     /**
@@ -203,10 +207,13 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             mBanner.setOnBannerClickListener(new OnBannerClickListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    Toast.makeText(mContext, "Position==" + position, Toast.LENGTH_SHORT).show();
+                    //根据点击事件跳转到商品详情页,因为好多地方都要用到此逻辑,所以抽取此方法
+                    Intent intent = new Intent(gcontext,GoodsInfoActivity.class);
+                    gcontext.startActivity(intent);
                 }
             });
         }
     }
+
 
 }
